@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economize Água</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background: linear-gradient(#4fc3f7,#81d4fa);
+        text-align:center;
+        padding:40px;
+    }
+
+    .caixa{
+        background:white;
+        max-width:400px;
+        margin:auto;
+        padding:20px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.3);
+    }
+
+    input{
+        width:90%;
+        padding:10px;
+        margin:10px;
+        font-size:16px;
+    }
+
+    button{
+        padding:10px 20px;
+        font-size:16px;
+        background:#2196F3;
+        color:white;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#1976D2;
+    }
+
+    #resultado{
+        margin-top:20px;
+        font-size:18px;
+        font-weight:bold;
+    }
+
+    ul{
+        text-align:left;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="caixa">
+    <h1>💧 Economize Água</h1>
+
+    <p>Meta diária (litros):</p>
+    <input type="number" id="meta">
+
+    <p>Consumo de hoje (litros):</p>
+    <input type="number" id="consumo">
+
+    <button onclick="verificar()">Verificar</button>
+
+    <div id="resultado"></div>
+
+    <h3>Dicas:</h3>
+    <ul>
+        <li>Feche a torneira ao escovar os dentes.</li>
+        <li>Tome banhos de até 5 minutos.</li>
+        <li>Conserte vazamentos.</li>
+        <li>Reutilize água quando possível.</li>
+        <li>Use balde em vez de mangueira.</li>
+    </ul>
+</div>
+
+<script>
+function verificar(){
+
+    let meta = Number(document.getElementById("meta").value);
+    let consumo = Number(document.getElementById("consumo").value);
+    let resultado = document.getElementById("resultado");
+
+    if(meta <= 0 || consumo < 0){
+        resultado.innerHTML = "Digite valores válidos.";
+        resultado.style.color = "red";
+        return;
+    }
+
+    if(consumo <= meta){
+        resultado.innerHTML = "✅ Parabéns! Você atingiu sua meta de economia de água.";
+        resultado.style.color = "green";
+    }else{
+        let excesso = consumo - meta;
+        resultado.innerHTML = "⚠️ Você consumiu " + excesso.toFixed(1) + " litros acima da meta.";
+        resultado.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
